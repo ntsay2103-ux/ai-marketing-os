@@ -7,6 +7,7 @@ set -e
 APP_DIR="/opt/ai-marketing-os"
 APP_USER="botuser"
 SERVICE_NAME="ai-marketing-os"
+REPO_URL="https://github.com/ntsay2103-ux/ai-marketing-os.git"
 
 echo "=== AI Marketing OS: первичная установка ==="
 
@@ -28,12 +29,22 @@ else
     echo "    Пользователь $APP_USER уже существует"
 fi
 
-# 3. Директория приложения
+# 3. Клонирование репозитория
 echo "[3/7] Клонирую репозиторий в $APP_DIR..."
+# Если директория есть, но engine/ отсутствует — предыдущий clone был неполным, удаляем
+if [ -d "$APP_DIR" ] && [ ! -d "$APP_DIR/engine" ]; then
+    echo "    Неполная директория — удаляю и клонирую заново"
+    rm -rf "$APP_DIR"
+fi
+
 if [ ! -d "$APP_DIR" ]; then
-    GIT_TERMINAL_PROMPT=0 git clone https://github.com/ntsay2103-ux/ai-marketing-os.git "$APP_DIR"
+    env -i HOME=/root \
+        GIT_TERMINAL_PROMPT=0 \
+        GIT_ASKPASS=/bin/echo \
+        PATH=/usr/bin:/bin \
+        git clone "$REPO_URL" "$APP_DIR"
 else
-    echo "    Директория уже существует, пропускаю clone"
+    echo "    Репозиторий уже клонирован, пропускаю"
 fi
 
 chown -R "$APP_USER":"$APP_USER" "$APP_DIR"
