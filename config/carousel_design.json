@@ -1,0 +1,85 @@
+{
+  "_note": "Дизайн-система Instagram-каруселей. Меняй здесь — renderer не трогай.",
+
+  "canvas": { "width": 1080, "height": 1080 },
+
+  "colors": {
+    "bg":           "#F7F5F2",
+    "accent":       "#2E7D5B",
+    "accent_light": "#E8F0EC",
+    "text_primary": "#1B1B1B",
+    "text_secondary": "#555555",
+    "lines":        "#E5E1DC",
+    "white":        "#FFFFFF"
+  },
+
+  "brand": {
+    "name":     "ЧистоПодКлюч",
+    "cta_last": "Следи за публикациями!"
+  },
+
+  "fonts": {
+    "extrabold": [
+      "assets/fonts/Manrope-ExtraBold.ttf",
+      "assets/fonts/Montserrat-Bold.ttf"
+    ],
+    "semibold": [
+      "assets/fonts/Manrope-SemiBold.ttf",
+      "assets/fonts/Montserrat-SemiBold.ttf"
+    ],
+    "regular": [
+      "assets/fonts/Manrope-Regular.ttf",
+      "assets/fonts/Montserrat-Regular.ttf"
+    ],
+    "_fallback": [
+      "C:\\Windows\\Fonts\\arialbd.ttf",
+      "C:\\Windows\\Fonts\\arial.ttf",
+      "C:\\Windows\\Fonts\\calibrib.ttf",
+      "C:\\Windows\\Fonts\\calibri.ttf",
+      "/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf",
+      "/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf",
+      "/usr/share/fonts/truetype/liberation/LiberationSans-Bold.ttf",
+      "/usr/share/fonts/truetype/liberation/LiberationSans-Regular.ttf"
+    ],
+    "_note": "Скачать Manrope: https://fonts.google.com/specimen/Manrope → 'Download family'"
+  },
+
+  "sizes": {
+    "logo_icon":        36,
+    "logo_text":        22,
+    "h1_max":          108,
+    "h1_min":           48,
+    "h1_green_max":    100,
+    "h1_green_min":     44,
+    "h2_max":           78,
+    "h2_min":           36,
+    "body_max":         34,
+    "body_min":         22,
+    "box_text":         28,
+    "number_huge":     260,
+    "number_subtitle":  52,
+    "indicator_r":      40,
+    "indicator_text":   27,
+    "num_circle_r":     36,
+    "num_circle_text":  26,
+    "dot_r":             7,
+    "dot_gap":          14,
+    "cta_last":         28,
+    "support_text":     26
+  },
+
+  "layout": {
+    "pad":              72,
+    "line_gap":         10,
+    "heading_gap":      30,
+    "after_logo_gap":   70,
+    "after_circle_y":   48,
+    "box_padding":      28,
+    "box_radius":       18,
+    "sparkle_positions": [
+      {"x": -148, "y": 100, "r": 18},
+      {"x":  -88, "y": 185, "r": 10},
+      {"x": -210, "y": 210, "r": 13}
+    ]
+  }
+}

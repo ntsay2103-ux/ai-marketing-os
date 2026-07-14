@@ -1,0 +1,30 @@
+llm:
+  provider: openrouter
+
+  providers:
+    openrouter:
+      base_url: https://openrouter.ai/api/v1
+    anthropic:
+      base_url: https://api.anthropic.com
+
+  models:
+    research: anthropic/claude-opus-4-8
+    create:   anthropic/claude-sonnet-4-6
+    review:   anthropic/claude-haiku-4-5-20251001
+    default:  anthropic/claude-sonnet-4-6
+
+  parameters:
+    max_tokens: 16000
+    temperature: 0.7
+
+generation:
+  image:
+    provider: kie_ai
+    endpoint: gpt4o-image   # меняется здесь без правки кода
+    default_size: "1:1"
+  video:
+    provider: kie_ai
+    endpoint: veo            # placeholder для будущей интеграции
+
+projects:
+  active: cleaning

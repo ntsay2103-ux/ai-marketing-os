@@ -1,0 +1,37 @@
+# Секреты
+.env
+
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+venv/
+.venv/
+*.egg-info/
+
+# Данные (не коммитим в репо)
+data/
+sessions/
+
+# Фотобиблиотека — большие бинарные файлы, пополняются вручную
+assets/photos/*
+assets/photos_tips/*
+!assets/photos/.gitkeep
+!assets/photos_tips/.gitkeep
+
+# Шрифты — скачиваются автоматически через ensure_fonts() при первом запуске
+assets/fonts/*
+!assets/fonts/.gitkeep
+
+# Логи
+*.log
+bot.log
+
+# Временные файлы
+*.tmp
+*.bak
+
+# IDE
+.vscode/
+.idea/
+*.swp

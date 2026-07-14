@@ -1,0 +1,6 @@
+pillow==12.3.0
+openai==2.44.0
+python-dotenv==1.2.2
+PyYAML==6.0.3
+python-telegram-bot[job-queue]==22.8
+requests==2.34.2

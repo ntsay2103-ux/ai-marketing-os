@@ -1,0 +1,23 @@
+[Unit]
+Description=AI Marketing OS — Telegram Bot
+After=network.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=botuser
+WorkingDirectory=/opt/ai-marketing-os
+ExecStart=/opt/ai-marketing-os/venv/bin/python engine/telegram_bot.py
+EnvironmentFile=/opt/ai-marketing-os/.env
+Restart=on-failure
+RestartSec=10
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=ai-marketing-os
+
+# Ограничения безопасности
+NoNewPrivileges=true
+PrivateTmp=true
+
+[Install]
+WantedBy=multi-user.target
