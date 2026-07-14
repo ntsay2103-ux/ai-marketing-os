@@ -31,7 +31,7 @@ fi
 # 3. Директория приложения
 echo "[3/7] Клонирую репозиторий в $APP_DIR..."
 if [ ! -d "$APP_DIR" ]; then
-    git clone https://github.com/YOUR_USERNAME/YOUR_REPO.git "$APP_DIR"
+    GIT_TERMINAL_PROMPT=0 git clone https://github.com/ntsay2103-ux/ai-marketing-os.git "$APP_DIR"
 else
     echo "    Директория уже существует, пропускаю clone"
 fi
