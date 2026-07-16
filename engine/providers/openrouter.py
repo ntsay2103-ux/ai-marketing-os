@@ -15,6 +15,10 @@ def complete(model: str, system: str, messages: list[dict], params: dict, json_m
     client = OpenAI(
         api_key=api_key,
         base_url="https://openrouter.ai/api/v1",
+        default_headers={
+            "HTTP-Referer": "https://github.com/ntsay2103-ux/ai-marketing-os",
+            "X-Title": "AI Marketing OS",
+        },
     )
 
     all_messages = []
