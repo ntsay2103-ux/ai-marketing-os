@@ -100,6 +100,8 @@ def run(store: Store) -> tuple[str, dict | None]:
 
     messages = build_messages(RESEARCH_USER_PROMPT)
 
+    logger.info("=== NEW RESEARCH START === %s", datetime.now().strftime("%Y-%m-%d %H:%M:%S"))
+
     raw = llm_client.complete(
         mode="research",
         system=system,
@@ -118,6 +120,8 @@ def run(store: Store) -> tuple[str, dict | None]:
         print(f"\n[!] Ошибка парсинга JSON: {e}")
         print(f"    Сырой ответ LLM сохранён: {error_path}\n")
         return raw, None
+
+    logger.info("=== NEW RESEARCH END === ideas=%d", len(data.get("ideas", [])))
 
     report = format_report(data)
 
