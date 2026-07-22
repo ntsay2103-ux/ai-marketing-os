@@ -1059,9 +1059,14 @@ async def _run_carousel_generation(
     from engine import carousel_renderer
     await asyncio.to_thread(carousel_renderer.ensure_fonts)
 
+    # Определяем источник фото: tips-кампания использует assets/photos_tips/
+    specs = store.load_campaign_specs()
+    spec  = next((s for s in specs if s.get("id") == spec_id), {})
+    use_tips = bool(spec.get("idea", {}).get("tip_source_url", ""))
+
     try:
         saved_images = await asyncio.to_thread(
-            carousel_renderer.render_photo_carousel, slides, output_dir, spec_id
+            carousel_renderer.render_photo_carousel, slides, output_dir, spec_id, use_tips
         )
     except (FileNotFoundError, ValueError) as ph_err:
         logger.warning(f"[Bot] Фотобиблиотека недоступна ({ph_err}). Fallback: плоский фон.")
