@@ -121,12 +121,12 @@ def _format_idea(idea: dict, index: int, total: int) -> str:
     adaptation = idea.get("adaptation", "—")
 
     return (
-        f"*Идея {index}/{total}*\n"
-        f"*Потенциал:* {potential} — {rationale}\n"
-        f"*Аудитория:* {funnel}\n\n"
-        f"*{title}*\n\n"
-        f"*Триггер:* {trigger}\n\n"
-        f"*Адаптация:* {adaptation}"
+        f"Идея {index}/{total}\n"
+        f"Потенциал: {potential} — {rationale}\n"
+        f"Аудитория: {funnel}\n\n"
+        f"{title}\n\n"
+        f"Триггер: {trigger}\n\n"
+        f"Адаптация: {adaptation}"
     )
 
 
@@ -576,7 +576,7 @@ async def cmd_review(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None
     context.user_data["review_decisions"] = {}
 
     text = _format_idea(ideas[0], 1, len(ideas))
-    await update.message.reply_text(text, reply_markup=_review_keyboard(), parse_mode="Markdown")
+    await update.message.reply_text(text, reply_markup=_review_keyboard())
 
 
 # ---------------------------------------------------------------------------
@@ -642,7 +642,7 @@ async def callback_review(update: Update, context: ContextTypes.DEFAULT_TYPE) ->
         next_idea = ideas[next_idx]
         text = _format_idea(next_idea, next_idx + 1, len(ideas))
         await query.message.reply_text(
-            text, reply_markup=_review_keyboard(), parse_mode="Markdown"
+            text, reply_markup=_review_keyboard()
         )
 
 
