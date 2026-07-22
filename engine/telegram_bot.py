@@ -503,7 +503,11 @@ async def cmd_next(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     store = Store(PROJECT)
     status = controller.get_status(store)
 
-    if status["requires_user_action"]:
+    from engine.workflow import PENDING_PUBLICATION, PENDING_RESULTS
+
+    force_research = status["state"] in (PENDING_PUBLICATION, PENDING_RESULTS)
+
+    if status["requires_user_action"] and not force_research:
         next_cmd = status.get("next_command")
         hint = f"\n\nИспользуйте: /{next_cmd}" if next_cmd else ""
         await update.message.reply_text(
@@ -514,7 +518,7 @@ async def cmd_next(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     msg = await update.message.reply_text("Выполняю следующий шаг...")
 
     # LLM-вызов выполняется в thread pool, не блокируя event loop
-    result = await asyncio.to_thread(controller.step, store)
+    result = await asyncio.to_thread(controller.step, store, force_research)
 
     error = result.get("error")
     if error:

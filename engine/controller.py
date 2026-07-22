@@ -55,10 +55,14 @@ def get_status(store: Store) -> dict:
     }
 
 
-def step(store: Store) -> dict:
+def step(store: Store, force_research: bool = False) -> dict:
     """
     Выполняет следующий автоматический шаг pipeline.
     Если шаг требует участия пользователя — не выполняет его, возвращает инструкцию.
+
+    force_research=True: очищает очередь кандидатов и запускает новый Research
+    независимо от текущего состояния (кроме PENDING_REVIEW и PENDING_CREATE).
+    Idea Bank, кампании и результаты не затрагиваются.
 
     Автоматические шаги:
       IDLE            → research.run()
@@ -80,6 +84,11 @@ def step(store: Store) -> dict:
     """
     status = get_status(store)
     state = status["state"]
+
+    if force_research and state not in (PENDING_REVIEW, PENDING_CREATE):
+        logger.info(f"[Controller] force_research=True, state={state} → очищаю кандидатов и запускаю research")
+        store.save_candidate_ideas([])
+        state = IDLE
 
     if state == IDLE:
         logger.info("[Controller] state=IDLE → запускаю research")
