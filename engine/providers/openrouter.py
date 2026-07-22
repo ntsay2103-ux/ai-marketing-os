@@ -12,13 +12,20 @@ def complete(model: str, system: str, messages: list[dict], params: dict, json_m
     if not api_key:
         raise EnvironmentError("OPENROUTER_API_KEY не найден в .env")
 
+    base_url = os.getenv("OPENROUTER_BASE_URL", "https://openrouter.ai/api/v1")
+    worker_secret = os.getenv("WORKER_SECRET", "")
+
+    extra_headers = {
+        "HTTP-Referer": "https://github.com/ntsay2103-ux/ai-marketing-os",
+        "X-Title": "AI Marketing OS",
+    }
+    if worker_secret:
+        extra_headers["X-Worker-Secret"] = worker_secret
+
     client = OpenAI(
         api_key=api_key,
-        base_url="https://openrouter.ai/api/v1",
-        default_headers={
-            "HTTP-Referer": "https://github.com/ntsay2103-ux/ai-marketing-os",
-            "X-Title": "AI Marketing OS",
-        },
+        base_url=base_url,
+        default_headers=extra_headers,
     )
 
     all_messages = []

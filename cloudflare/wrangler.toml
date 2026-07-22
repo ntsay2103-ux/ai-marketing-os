@@ -1,0 +1,8 @@
+name = "ai-marketing-os-proxy"
+main = "worker.js"
+compatibility_date = "2024-01-01"
+
+# Secrets задаются отдельно через:
+#   wrangler secret put OPENROUTER_API_KEY
+#   wrangler secret put WORKER_SECRET
+# Не добавляйте реальные значения в этот файл.
